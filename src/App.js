@@ -1,14 +1,14 @@
-import React from 'react';
-import {BrowserRouter as Router} from 'react-router-dom';
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import SignUpParent from "./components/SignUpParent";
+import Dashboard from "./components/Dashboard";
 
-import './App.css';
+import "./App.css";
 
 const App = () => {
   return (
     <Router>
-      <div className='App'>
-        <h3>Hello, I am Apppp, esidfjsf</h3>
-      </div>
+      <Dashboard />
     </Router>
   );
 };
