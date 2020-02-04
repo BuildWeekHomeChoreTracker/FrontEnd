@@ -1,12 +1,11 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-// import axios from 'axios';
 
-export default function Register() {
+import { login } from "../action.js/login";
+
+const Login = () => {
   const [state, setState] = useState({
-    firstname: "",
-    lastname: "",
-    email: "",
     username: "",
     password: ""
   });
@@ -19,12 +18,10 @@ export default function Register() {
   const submitHandler = event => {
     event.preventDefault();
 
+    login(state);
     console.log("I have been submitted!!");
 
     setState({
-      firstname: "",
-      lastname: "",
-      email: "",
       username: "",
       password: ""
     });
@@ -32,29 +29,8 @@ export default function Register() {
 
   return (
     <div>
-      <h4>Register Page</h4>
+      <h4>Login Page</h4>
       <form onSubmit={submitHandler}>
-        <input
-          type="text"
-          value={state.firstname}
-          name="firstname"
-          onChange={changeHandler}
-          placeholder="first name"
-        />
-        <input
-          type="text"
-          value={state.lastname}
-          name="lastname"
-          onChange={changeHandler}
-          placeholder="lastname"
-        />
-        <input
-          type="text"
-          value={state.email}
-          name="email"
-          onChange={changeHandler}
-          placeholder="email"
-        />
         <input
           type="text"
           value={state.username}
@@ -69,14 +45,17 @@ export default function Register() {
           onChange={changeHandler}
           placeholder="password"
         />
-        <button className="w-100 btn btn-primary mt-3" type="submit">
-          Submit
-        </button>
+        <button>Login</button>
         <Link to="/">
           <button>Home</button>
         </Link>
-        {/* <pre>{JSON.stringify(formData, null, 2)}</pre> */}
       </form>
     </div>
   );
-}
+};
+
+// const mapStateToProps = state => {
+//   return {};
+// };
+
+export default Login;

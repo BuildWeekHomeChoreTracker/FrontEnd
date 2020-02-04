@@ -32,7 +32,7 @@ export default function Register() {
 
   return (
     <div>
-      <h4>Register Page</h4>
+      <h4>Register Page For Your Child</h4>
       <form onSubmit={submitHandler}>
         <input
           type="text"
