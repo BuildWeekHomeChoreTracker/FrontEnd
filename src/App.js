@@ -4,6 +4,7 @@ import SignUpParent from "./components/SignUpParent";
 import SignUpChild from "./components/SignUpChild";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
+import childLogin from "./components/ChildLogin";
 
 import "./App.css";
 
@@ -14,6 +15,7 @@ const App = () => {
       <Route exact path="/SignUpChild" component={SignUpChild} />
       <Route exact path="/SignUpParent" component={SignUpParent} />
       <Route exact path="/Login" component={Login} />
+      <Route exact path="/childLogin" component={childLogin} />
     </Router>
   );
 };

@@ -7,7 +7,7 @@ const FormPage = () => {
   return (
     <div>
       <Grid item>
-        <h2>Register</h2>
+        <h2>Login/Sign Up</h2>
       </Grid>
       <br />
       <Grid container spacing={2}>
@@ -27,11 +27,6 @@ const FormPage = () => {
         </Grid>
       </Grid>
       <br />
-      <Grid>
-        <Link to="/Login" style={{ textDecoration: "none" }}>
-          Already have an account? Sign in
-        </Link>
-      </Grid>
     </div>
   );
 };

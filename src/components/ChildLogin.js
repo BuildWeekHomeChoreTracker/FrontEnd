@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { login } from "../action.js/login";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -14,16 +15,13 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
-// Styling Sign Up Form
+// Styling Starts Here
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" to="/">
-        HomeChoreTracker
-      </Link>{" "}
-      {new Date().getFullYear()}
+      <Link to="/">HomeChoreTracker</Link> {new Date().getFullYear()}
       {"."}
     </Typography>
   );
@@ -42,19 +40,15 @@ const useStyles = makeStyles(theme => ({
   },
   form: {
     width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(3)
+    marginTop: theme.spacing(1)
   },
   submit: {
     margin: theme.spacing(3, 0, 2)
   }
 }));
 
-//   Function Starts Here
-
-export default function Register() {
+const ChildLogin = () => {
   const [state, setState] = useState({
-    fstname: "",
-    lstname: "",
     username: "",
     password: ""
   });
@@ -67,11 +61,10 @@ export default function Register() {
   const submitHandler = event => {
     event.preventDefault();
 
+    login(state);
     console.log("I have been submitted!!");
 
     setState({
-      fstname: "",
-      lstname: "",
       username: "",
       password: ""
     });
@@ -87,70 +80,35 @@ export default function Register() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up child
+          Sign in
         </Typography>
         <form className={classes.form} noValidate>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="fstname"
-                name="firstName"
-                variant="outlined"
-                required
-                fullWidth
-                id="fstname"
-                value={state.fstname}
-                label="First Name"
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lstname"
-                value={state.lstname}
-                label="Last Name"
-                name="lastName"
-                autoComplete="lstname"
-              />
-            </Grid>
-
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="username"
-                label="Username"
-                type="text"
-                id="username"
-                value={state.username}
-                autoComplete="current-username"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                value={state.password}
-                autoComplete="current-password"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive news, marketing promotions and updates via email."
-              />
-            </Grid>
-          </Grid>
-
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="username"
+            label="Username"
+            name="username"
+            autoComplete="username"
+            autoFocus
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+          />
+          <FormControlLabel
+            control={<Checkbox value="remember" color="primary" />}
+            label="Remember me"
+          />
           <Button
             type="submit"
             fullWidth
@@ -158,18 +116,27 @@ export default function Register() {
             color="primary"
             className={classes.submit}
           >
-            Sign Up
+            Sign In
           </Button>
-          <Grid container justify="flex-end">
+          <Grid container>
+            <Grid item xs>
+              <Link to="/">Forgot password?</Link>
+            </Grid>
             <Grid item>
-              <Link to="/childLogin">Already have an account? Sign in</Link>
+              <Link to="/">{"Don't have an account? Sign Up"}</Link>
             </Grid>
           </Grid>
         </form>
       </div>
-      <Box mt={5}>
+      <Box mt={8}>
         <Copyright />
       </Box>
     </Container>
   );
-}
+};
+
+// const mapStateToProps = state => {
+//   return {};
+// };
+
+export default ChildLogin;
