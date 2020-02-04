@@ -14,4 +14,8 @@ export const ADD_CHILD_START = 'ADD_CHILD_START';
 export const ADD_CHILD_SUCCESS = 'ADD_CHILD_SUCCESS';
 export const ADD_CHILD_ERROR = 'ADD_CHILD_ERROR';
 
+export const DELETE_CHILD_START = 'DELETE_CHILD_START';
+export const DELETE_CHILD_SUCCESS = 'DELETE_CHILD_SUCCESS';
+export const DELETE_CHILD_ERROR = 'DELETE_CHILD_ERROR';
+
 //https://chore-tracker1.herokuapp.com
