@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
-// import {connect} from 'react-redux';
-
-// import {login} from '../action.js/login';
+import axios from 'axios';
 
 // firstname	Required
 // lastname	Required
@@ -9,10 +7,10 @@ import React, {useState} from 'react';
 // username	Required and Unique
 // password	Required
 
-const Register = () => {
+const Register = props => {
   const [state, setState] = useState({
-    firstname: '',
-    lastname: '',
+    fname: '',
+    lname: '',
     email: '',
     username: '',
     password: ''
@@ -25,12 +23,20 @@ const Register = () => {
 
   const submitHandler = event => {
     event.preventDefault();
+    console.log('I have been submitted f');
 
-    console.log('I have been submitted!!');
+    axios
+      .post('https://chore-tracker1.herokuapp.com/api/auth/register', state)
+      .then(res => {
+        console.log('This is the data ', res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
 
     setState({
-      firstname: '',
-      lastname: '',
+      fname: '',
+      lname: '',
       email: '',
       username: '',
       password: ''
@@ -39,19 +45,19 @@ const Register = () => {
 
   return (
     <div>
-      <h4>Login Page</h4>
+      <h4>Signup Page</h4>
       <form onSubmit={submitHandler}>
         <input
           type='text'
-          value={state.firstname}
-          name='firstname'
+          value={state.fname}
+          name='fname'
           onChange={changeHandler}
           placeholder='first name'
         />
         <input
           type='text'
-          value={state.lastname}
-          name='lastname'
+          value={state.lname}
+          name='lname'
           onChange={changeHandler}
           placeholder='lastname'
         />

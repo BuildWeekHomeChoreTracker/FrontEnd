@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 import './App.css';
 import Login from './components/Login';
@@ -9,7 +9,10 @@ const App = () => {
   return (
     <Router>
       <div className='App'>
-        <Register />
+        <Switch>
+          <Route path='/register' component={Register} />
+          <Route path='/' component={Login} />
+        </Switch>
       </div>
     </Router>
   );

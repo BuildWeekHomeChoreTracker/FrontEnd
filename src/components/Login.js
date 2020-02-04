@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
-import {connect} from 'react-redux';
-
-import {login} from '../action.js/login';
+import axios from 'axios';
 
 const Login = () => {
   const [state, setState] = useState({
@@ -17,7 +15,14 @@ const Login = () => {
   const submitHandler = event => {
     event.preventDefault();
 
-    login(state);
+    console.log('I have been submitted!!');
+
+    axios
+      .post('https://chore-tracker1.herokuapp.com/api/auth/login', state)
+      .then(res => {
+        console.log(res);
+      })
+      .catch();
     console.log('I have been submitted!!');
 
     setState({
