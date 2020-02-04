@@ -24,4 +24,7 @@ export const FETCH_CHORES_START = 'FETCH_CHORES_START';
 export const FETCH_CHORES_SUCCESS = 'FETCH_CHORES_SUCCESS';
 export const FETCH_CHORES_ERROR = 'FETCH_CHORES_ERROR';
 
+export const ADD_CHORES_START = 'ADD_CHORES_START';
+export const ADD_CHORES_SUCCESS = 'ADD_CHORES_SUCCESS';
+export const ADD_CHORES_ERROR = 'ADD_CHORES_ERROR';
 //https://chore-tracker1.herokuapp.com
