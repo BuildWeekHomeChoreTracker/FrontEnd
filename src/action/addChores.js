@@ -6,7 +6,7 @@ export const addChores = item => dispatch => {
   dispatch({type: ADD_CHORES_START});
 
   return axiosWithAuth()
-    .post(`/api/chore/${id}`)
+    .post(`/api/chore/${item.id}`, item)
     .then(res => {
       console.log(res);
       dispatch({type: ADD_CHORES_SUCCESS, payload: item});

@@ -3,7 +3,7 @@ import axiosWithAuth from '../utils/axiosWithAuth';
 
 const deleteChild = id => dispatch => {
   dispatch({type: DELETE_CHILD_START});
-  axiosWithAuth()
+  return axiosWithAuth()
     .delete('')
     .then(res => {
       console.log(res);

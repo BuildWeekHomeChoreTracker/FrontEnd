@@ -3,7 +3,7 @@ import {ADD_CHILD_START, ADD_CHILD_ERROR} from '.';
 
 export const addChild = child => dispatch => {
   dispatch({type: ADD_CHILD_START});
-  axiosWithAuth()
+  return axiosWithAuth()
     .post('')
     .then(res => {
       console.log(res);

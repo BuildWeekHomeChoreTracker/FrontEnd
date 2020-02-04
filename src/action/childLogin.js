@@ -3,7 +3,7 @@ import {CHILD_LOGIN_START, CHILD_LOGIN_SUCCESS} from '.';
 
 export const childLogin = user => dispatch => {
   dispatch({type: CHILD_LOGIN_START});
-  axios
+  return axios
     .post('//https://chore-tracker1.herokuapp.com/api/auth/login/child')
     .then(res => {
       console.log(res);
