@@ -1,4 +1,4 @@
-import {LOGIN_START, LOGIN_SUCCESS, LOGIN_ERROR} from '../action.js';
+import {LOGIN_START, LOGIN_SUCCESS, LOGIN_ERROR} from '../action/index.js';
 
 const initialState = {
   users: [],

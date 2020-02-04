@@ -1,4 +1,4 @@
-import {REGISTER_START, REGISTER_SUCCESS} from '../action.js';
+import {REGISTER_START, REGISTER_SUCCESS} from '../action/index.js';
 
 const initialState = {
   users: {},
