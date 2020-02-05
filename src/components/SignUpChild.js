@@ -13,6 +13,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import uuid from "uuid";
 
 // Styling Sign Up Form
 
@@ -70,6 +71,7 @@ export default function Register() {
     console.log("I have been submitted!!");
 
     setState({
+      parent_id: uuid(),
       fstname: "",
       lstname: "",
       username: "",
@@ -141,12 +143,6 @@ export default function Register() {
                 id="password"
                 value={state.password}
                 autoComplete="current-password"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive news, marketing promotions and updates via email."
               />
             </Grid>
           </Grid>
