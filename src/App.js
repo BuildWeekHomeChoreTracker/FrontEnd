@@ -9,7 +9,8 @@ import AddChore from "./components/AddChore";
 import UpdateChore from "./components/UpdateChore";
 import ChildrenList from "./components/ChildrenList";
 import Child from "./components/Child";
-
+import ChoreList from "./components/ChoreList";
+import Chore from "./components/Chore";
 import "./App.css";
 
 const App = () => {
@@ -24,6 +25,8 @@ const App = () => {
       <Route exact path="/UpdateChore" component={UpdateChore} />
       <Route exact path="/childrenlist" component={ChildrenList} />
       <Route exact path="/childrenlist/:childID" component={Child} />
+      <Route exact path="/chorelist" component={ChoreList} />
+      <Route exact path="/chorelist/:choreID" component={Chore} />
     </Router>
   );
 };
