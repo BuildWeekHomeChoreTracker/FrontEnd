@@ -1,4 +1,4 @@
-import {CHILD_LOGIN_START, CHILD_LOGIN_SUCCESS} from '../action';
+import {CHILD_LOGIN_START, CHILD_LOGIN_SUCCESS, CHILD_LOGIN_ERROR} from '../action';
 
 const initialState = {
   user: {},
@@ -23,11 +23,11 @@ export const childLoginReducer = (state = initialState, {type, payload}) => {
         user: payload
       };
 
-    // case CHILD_LOGIN_ERROR:
-    //   return {
-    //     ...state,
-    //     error: payload
-    //   };
+    case CHILD_LOGIN_ERROR:
+      return {
+        ...state,
+        error: payload
+      };
 
     default:
       return state;

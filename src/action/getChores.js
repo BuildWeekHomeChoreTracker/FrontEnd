@@ -7,8 +7,8 @@ const getChores = id => dispatch => {
   return axiosWithAuth()
     .get(`/api/auth/child/${id}`)
     .then(res => {
-      console.log(res.data);
-      dispatch({type: FETCH_CHORES_SUCCESS, payload: res.data});
+      console.log(res.data.chore);
+      dispatch({type: FETCH_CHORES_SUCCESS, payload: res.data.chore});
     })
     .catch(err => {
       console.log(err);
