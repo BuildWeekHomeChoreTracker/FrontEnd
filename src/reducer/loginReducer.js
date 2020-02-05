@@ -3,26 +3,31 @@ import {LOGIN_START, LOGIN_SUCCESS, LOGIN_ERROR} from '../action/index.js';
 const initialState = {
   users: [],
   isLogging: false,
-  error: ''
+  error: '',
+  token: localStorage.getItem('token')
 };
 
 export const loginReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_START:
       return {
+        ...state,
         isLogging: true,
         error: null
       };
 
     case LOGIN_SUCCESS:
       return {
+        ...state,
         isLoggin: false,
         error: null,
-        users: action.payload
+        users: action.payload,
+        token: state.token
       };
 
     case LOGIN_ERROR:
       return {
+        ...state,
         error: action.payload
       };
 
