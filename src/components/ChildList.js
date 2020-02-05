@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 
 import getChildren from '../action/getChildren';
@@ -6,7 +6,7 @@ import getChildren from '../action/getChildren';
 const ChildList = props => {
   useEffect(() => {
     getChildren();
-  }, []);
+  }, [props.childrenList]);
 
   const getChildren = () => {
     props.getChildren();
@@ -15,6 +15,9 @@ const ChildList = props => {
   return (
     <div>
       <h3>These are your kids </h3>
+      {props.childrenList.map(item => (
+        <h3>Name: {item.fstname} </h3>
+      ))}
     </div>
   );
 };
@@ -22,7 +25,7 @@ const ChildList = props => {
 const mapStateToProps = ({getChildrenReducer}) => {
   console.log('MapState: ', getChildrenReducer.children);
   return {
-    childrenlist: getChildrenReducer.children
+    childrenList: getChildrenReducer.children
   };
 };
 
