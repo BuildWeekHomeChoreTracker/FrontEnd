@@ -6,7 +6,7 @@ import getChildren from '../action/getChildren';
 const ChildList = props => {
   useEffect(() => {
     getChildren();
-  }, [props.childrenList]);
+  }, []);
 
   const getChildren = () => {
     props.getChildren();
@@ -16,7 +16,7 @@ const ChildList = props => {
     <div>
       <h3>These are your kids </h3>
       {props.childrenList.map(item => (
-        <h3>Name: {item.fstname} </h3>
+        <h3 key={item.username}>Name: {item.fstname} </h3>
       ))}
     </div>
   );
