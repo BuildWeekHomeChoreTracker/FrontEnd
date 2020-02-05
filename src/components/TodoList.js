@@ -15,12 +15,19 @@ const TodoList = props => {
     props.getChores(1);
   };
 
+  const deleteChore = id => {};
+
   return (
     <div>
       <h3>HERE ARE THE CHORES LIST</h3>
-      {props.todoList.map(item => (
-        <h5 key={item.id}>Name: {item.name}</h5>
-      ))}
+      {props.todoList.map(item => {
+        return (
+          <div>
+            <h5 key={item.id}>Name: {item.name}</h5>
+            <button onClick={() => deleteChore(item.id)}>delete</button>
+          </div>
+        );
+      })}
     </div>
   );
 };
