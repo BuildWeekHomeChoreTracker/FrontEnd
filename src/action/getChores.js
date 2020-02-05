@@ -1,4 +1,5 @@
 import {FETCH_CHORES_START, FETCH_CHORES_SUCCESS, FETCH_CHORES_ERROR} from '.';
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 const getChores = id => dispatch => {
   dispatch({type: FETCH_CHORES_START});
@@ -14,3 +15,5 @@ const getChores = id => dispatch => {
       dispatch({type: FETCH_CHORES_ERROR, payload: err});
     });
 };
+
+export default getChores;

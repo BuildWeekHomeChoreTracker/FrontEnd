@@ -14,3 +14,5 @@ const deleteChild = id => dispatch => {
       dispatch({type: DELETE_CHILD_ERROR, payload: err});
     });
 };
+
+export default deleteChild;

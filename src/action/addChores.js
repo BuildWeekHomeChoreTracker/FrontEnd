@@ -2,7 +2,7 @@ import {ADD_CHORES_START, ADD_CHORES_SUCCESS, ADD_CHORES_ERROR} from '.';
 
 import axiosWithAuth from '../utils/axiosWithAuth';
 
-export const addChores = item => dispatch => {
+const addChores = item => dispatch => {
   dispatch({type: ADD_CHORES_START});
 
   return axiosWithAuth()
@@ -16,3 +16,5 @@ export const addChores = item => dispatch => {
       dispatch({type: ADD_CHORES_ERROR, payload: err});
     });
 };
+
+export default addChores;
