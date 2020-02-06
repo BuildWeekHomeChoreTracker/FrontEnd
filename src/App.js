@@ -30,10 +30,10 @@ const App = () => {
         <PrivateRoute exact path='/signUpChild' component={SignUpChild} />
         <PrivateRoute exact path='/addChore' component={AddChore} />
         <PrivateRoute exact path='/updateChore' component={UpdateChore} />
-        <PrivateRoute exact path='/childrenlist' component={ChildrenList} />
+        <PrivateRoute exact path='/childrenList' component={ChildrenList} />
         <PrivateRoute exact path='/childrenlist/:id' component={Child} />
-        <PrivateRoute exact path='/chorelist' component={ChoreList} />
-        <PrivateRoute exact path='/chorelist/:id' component={Chore} />
+        <PrivateRoute exact path='/choreList' component={ChoreList} />
+        <PrivateRoute exact path='/choreList/:id' component={Chore} />
       </Switch>
     </Router>
   );

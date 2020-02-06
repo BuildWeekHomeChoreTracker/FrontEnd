@@ -62,7 +62,7 @@ export default function Register() {
 
   const changeHandler = event => {
     setState({...state, [event.target.name]: event.target.value});
-    // console.log(event.target.name, event.target.value);
+    console.log([event.target.name], event.target.value);
   };
 
   const submitHandler = event => {
@@ -71,7 +71,6 @@ export default function Register() {
     console.log('I have been submitted!!');
 
     setState({
-      parent_id: uuid(),
       fstname: '',
       lstname: '',
       username: '',
@@ -91,12 +90,12 @@ export default function Register() {
         <Typography component='h1' variant='h5'>
           Sign up child
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} onSubmit={submitHandler} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
                 autoComplete='fstname'
-                name='firstName'
+                name='fstname'
                 variant='outlined'
                 required
                 fullWidth
@@ -109,13 +108,14 @@ export default function Register() {
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
+                type='text'
                 variant='outlined'
                 required
                 fullWidth
                 id='lstname'
                 value={state.lstname}
                 label='Last Name'
-                name='lastName'
+                name='lstname'
                 autoComplete='lstname'
                 onChange={changeHandler}
               />
