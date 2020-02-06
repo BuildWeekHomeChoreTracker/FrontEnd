@@ -1,5 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
+
+import deleteChild from '../action/deleteChild';
 
 import getChildren from '../action/getChildren';
 
@@ -8,16 +11,25 @@ const ChildList = props => {
     getChildren();
   }, []);
 
-  const getChildren = () => {
-    props.getChildren();
+  const getChildren = id => {
+    props.getChildren(id);
+  };
+
+  const deleteChild = id => {
+    props.deleteChild(id);
   };
 
   return (
     <div>
       <h3>These are your kids </h3>
-      {props.childrenList.map(item => (
-        <h3 key={item.username}>Name: {item.fstname} </h3>
-      ))}
+      {props.childrenList.map(item => {
+        return (
+          <div>
+            <h3 key={item.username}>Name: {item.fstname}</h3>
+            <button onClick={() => deleteChild(item.id)}>delete</button>
+          </div>
+        );
+      })}
     </div>
   );
 };
@@ -31,5 +43,5 @@ const mapStateToProps = ({getChildrenReducer}) => {
 
 export default connect(
   mapStateToProps,
-  {getChildren}
+  {getChildren, deleteChild}
 )(ChildList);

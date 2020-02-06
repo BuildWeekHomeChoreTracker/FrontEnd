@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 
 import getChores from '../action/getChores';
+import deleteChores from '../action/deleteChores';
 
 const TodoList = props => {
   const [list, setList] = useState([]);
@@ -9,13 +10,16 @@ const TodoList = props => {
   useEffect(() => {
     getTodo();
     setList(props.todoList);
-  }, [list]);
+  }, []);
 
   const getTodo = () => {
-    props.getChores(1);
+    props.getChores();
   };
 
-  const deleteChore = id => {};
+  const deleteChores = id => {
+    console.log(id);
+    props.deleteChores(id);
+  };
 
   return (
     <div>
@@ -24,7 +28,7 @@ const TodoList = props => {
         return (
           <div>
             <h5 key={item.id}>Name: {item.name}</h5>
-            <button onClick={() => deleteChore(item.id)}>delete</button>
+            <button onClick={() => deleteChores(item.id)}>delete</button>
           </div>
         );
       })}
@@ -41,5 +45,5 @@ const mapStateToProps = ({getChoresReducer}) => {
 
 export default connect(
   mapStateToProps,
-  {getChores}
+  {getChores, deleteChores}
 )(TodoList);
