@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { login } from "../action.js/login";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -14,6 +13,8 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+
+import login from "../action/login";
 
 // Styling Starts Here
 
@@ -47,7 +48,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Login = () => {
+const Login = props => {
   const [state, setState] = useState({
     username: "",
     password: ""
@@ -59,9 +60,13 @@ const Login = () => {
   };
 
   const submitHandler = event => {
+    console.log();
     event.preventDefault();
+    console.log("I am from login");
 
-    login(state);
+    props.login(state, props.history);
+    // props.history.push('/home');
+
     console.log("I have been submitted!!");
 
     setState({
@@ -82,9 +87,10 @@ const Login = () => {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} onSubmit={submitHandler} noValidate>
           <TextField
             variant="outlined"
+            onChange={changeHandler}
             margin="normal"
             required
             fullWidth
@@ -96,6 +102,7 @@ const Login = () => {
           />
           <TextField
             variant="outlined"
+            onChange={changeHandler}
             margin="normal"
             required
             fullWidth
@@ -139,4 +146,4 @@ const Login = () => {
 //   return {};
 // };
 
-export default Login;
+export default connect(null, { login })(Login);

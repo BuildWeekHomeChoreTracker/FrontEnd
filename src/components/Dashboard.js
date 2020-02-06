@@ -16,7 +16,7 @@ const FormPage = () => {
       <br />
       <Grid container spacing={2}>
         <Grid item>
-          <Link to="SignUpChild" style={{ textDecoration: "none" }}>
+          <Link to="/SignUpChild" style={{ textDecoration: "none" }}>
             <Button variant="contained" color="primary">
               I'm a child
             </Button>

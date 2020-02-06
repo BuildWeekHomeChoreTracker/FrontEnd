@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { login } from "../action.js/login";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -14,6 +13,8 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+
+import childLogin from "../action/childLogin";
 
 // Styling Starts Here
 
@@ -47,7 +48,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ChildLogin = () => {
+const ChildLogin = props => {
   const [state, setState] = useState({
     username: "",
     password: ""
@@ -61,7 +62,8 @@ const ChildLogin = () => {
   const submitHandler = event => {
     event.preventDefault();
 
-    login(state);
+    props.childLogin(state);
+
     console.log("I have been submitted!!");
 
     setState({
@@ -82,7 +84,7 @@ const ChildLogin = () => {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} onSubmit={submitHandler} noValidate>
           <TextField
             variant="outlined"
             margin="normal"

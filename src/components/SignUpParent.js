@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { connect } from "react-redux";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -13,6 +13,8 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+
+import register from "../action/register";
 
 // Styling Sign Up Form
 
@@ -51,7 +53,7 @@ const useStyles = makeStyles(theme => ({
 
 //   Function Starts Here
 
-export default function Register() {
+const Register = props => {
   const [state, setState] = useState({
     fname: "",
     lname: "",
@@ -66,9 +68,12 @@ export default function Register() {
   };
 
   const submitHandler = event => {
+    console.log(state);
     event.preventDefault();
 
     console.log("I have been submitted!!");
+
+    props.register(state);
 
     setState({
       fname: "",
@@ -77,8 +82,11 @@ export default function Register() {
       username: "",
       password: ""
     });
+
+    props.history.push("/login");
   };
   const classes = useStyles();
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -89,7 +97,7 @@ export default function Register() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} onSubmit={submitHandler} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -99,9 +107,10 @@ export default function Register() {
                 required
                 fullWidth
                 id="fname"
-                value={state.fname}
+                // value={state.fname}
                 label="First Name"
                 autoFocus
+                onChange={changeHandler}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -110,10 +119,11 @@ export default function Register() {
                 required
                 fullWidth
                 id="lname"
-                value={state.lname}
+                // value={state.lname}
                 label="Last Name"
                 name="lname"
                 autoComplete="lname"
+                onChange={changeHandler}
               />
             </Grid>
             <Grid item xs={12}>
@@ -122,10 +132,10 @@ export default function Register() {
                 required
                 fullWidth
                 id="email"
-                value={state.email}
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                onChange={changeHandler}
               />
             </Grid>
             <Grid item xs={12}>
@@ -137,8 +147,8 @@ export default function Register() {
                 label="Username"
                 type="text"
                 id="username"
-                value={state.username}
                 autoComplete="current-username"
+                onChange={changeHandler}
               />
             </Grid>
             <Grid item xs={12}>
@@ -150,8 +160,8 @@ export default function Register() {
                 label="Password"
                 type="password"
                 id="password"
-                value={state.password}
                 autoComplete="current-password"
+                onChange={changeHandler}
               />
             </Grid>
           </Grid>
@@ -177,4 +187,6 @@ export default function Register() {
       </Box>
     </Container>
   );
-}
+};
+
+export default connect(null, { register })(Register);
