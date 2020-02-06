@@ -12,8 +12,9 @@ const ChildList = props => {
     getChildren();
   }, []);
 
-  const getChildren = id => {
-    props.getChildren(id);
+  const getChildren = () => {
+    // console.log('THis is the id from childlist: ', props.id);
+    props.getChildren(props.id); //props.id
   };
 
   const deleteChild = id => {
@@ -27,6 +28,7 @@ const ChildList = props => {
         // console.log("Here i am", item);
         return (
           <div>
+            {/* <Link to={`/childrenlist/${item}`} */}
             <Child item={item} />
             <button onClick={() => deleteChild(item.id)}>delete</button>
           </div>
@@ -36,10 +38,13 @@ const ChildList = props => {
   );
 };
 
-const mapStateToProps = ({getChildrenReducer}) => {
-  console.log('MapState: ', getChildrenReducer.children);
+const mapStateToProps = ({getChildrenReducer, loginReducer}) => {
+  // console.log('MapState: ', loginReducer);
+  console.log('ID is: ', loginReducer.userID);
+
   return {
-    childrenList: getChildrenReducer.children
+    childrenList: getChildrenReducer.children,
+    id: loginReducer.userID
   };
 };
 

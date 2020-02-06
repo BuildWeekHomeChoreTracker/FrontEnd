@@ -1,22 +1,28 @@
-import React from "react";
-import chores from "./dumydatachore";
-import { Link } from "react-router-dom";
+import React, {useEffect} from 'react';
+import {connect} from 'react-redux';
 
-function ChoreList() {
-  return (
-    <div>
-      <Link to="/">
-        <h2>Home</h2>
-      </Link>
-      {chores.map(chore => (
-        <Link to={`/chorelist/${chore.id}`}>
-          <div key={chore.id}>
-            <p>{chore.name}</p>
-          </div>
-        </Link>
-      ))}
-    </div>
-  );
+import getChores from '../action/getChores';
+
+function ChoreList(props) {
+  console.log(props);
+  useEffect(() => {
+    getChoresList();
+  }, []);
+
+  const getChoresList = () => {
+    getChores();
+  };
+
+  return <div></div>;
 }
 
-export default ChoreList;
+const mapStateToProps = ({getChoresReducer}) => {
+  return {
+    choresList: getChoresReducer
+  };
+};
+
+export default connect(
+  null,
+  {getChores}
+)(ChoreList);
