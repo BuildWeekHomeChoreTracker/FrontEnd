@@ -21,7 +21,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link to="/">ChoreTracker</Link> {new Date().getFullYear()}
+      <Link to="/">HomeChoreTracker</Link> {new Date().getFullYear()}
       {"."}
     </Typography>
   );
