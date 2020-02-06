@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import Avatar from '@material-ui/core/Avatar';
@@ -13,7 +14,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import uuid from 'uuid';
+
+import addChild from '../action/addChild';
 
 // Styling Sign Up Form
 
@@ -52,8 +54,9 @@ const useStyles = makeStyles(theme => ({
 
 //   Function Starts Here
 
-export default function Register() {
+const SignUpChild = props => {
   const [state, setState] = useState({
+    parent_id: props.id,
     fstname: '',
     lstname: '',
     username: '',
@@ -62,13 +65,15 @@ export default function Register() {
 
   const changeHandler = event => {
     setState({...state, [event.target.name]: event.target.value});
-    console.log([event.target.name], event.target.value);
+    // console.log([event.target.name], event.target.value);
   };
 
   const submitHandler = event => {
     event.preventDefault();
 
-    console.log('I have been submitted!!');
+    console.log('I have been submitted!!', props.id);
+
+    props.addChild(state);
 
     setState({
       fstname: '',
@@ -76,6 +81,8 @@ export default function Register() {
       username: '',
       password: ''
     });
+
+    props.history.push('/home');
   };
 
   const classes = useStyles();
@@ -172,4 +179,16 @@ export default function Register() {
       </Box>
     </Container>
   );
-}
+};
+
+const mapStateToProps = ({loginReducer}) => {
+  console.log(loginReducer.userID);
+  return {
+    id: loginReducer.userID
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {addChild}
+)(SignUpChild);

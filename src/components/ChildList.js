@@ -10,13 +10,15 @@ import Child from './Child';
 const ChildList = props => {
   console.log(props);
   useEffect(() => {
-    getChildren();
+    // getChildren();
+    console.log(props.id);
+    props.getChildren(props.id); //props.id
   }, []);
 
-  const getChildren = () => {
-    // console.log('THis is the id from childlist: ', props.id);
-    props.getChildren(props.id); //props.id
-  };
+  // const getChildren = () => {
+  //   // console.log('THis is the id from childlist: ', props.id);
+  //   props.getChildren(props.id); //props.id
+  // };
 
   const deleteChild = id => {
     props.deleteChild(id);
@@ -46,7 +48,7 @@ const ChildList = props => {
 
 const mapStateToProps = ({getChildrenReducer, loginReducer}) => {
   // console.log('MapState: ', loginReducer);
-  // console.log('ID is: ', loginReducer.userID);
+  console.log('ID is: ', loginReducer.userID);
 
   return {
     childrenList: getChildrenReducer.children,
