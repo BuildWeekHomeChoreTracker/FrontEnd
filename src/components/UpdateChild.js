@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import axios from 'axios';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -15,7 +15,7 @@ import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
-import addChild from '../action/addChild';
+import updateChild from '../action/updateChild';
 
 // Styling Sign Up Form
 
@@ -54,13 +54,15 @@ const useStyles = makeStyles(theme => ({
 
 //   Function Starts Here
 
-const SignUpChild = props => {
+const UpdateChild = props => {
+  const {id} = useParams();
+  console.log(id);
   const [state, setState] = useState({
-    parent_id: props.id,
+    parent_id: props.parentId,
     fstname: '',
     lstname: '',
     username: '',
-    password: ''
+    id: id
   });
 
   const changeHandler = event => {
@@ -71,15 +73,14 @@ const SignUpChild = props => {
   const submitHandler = event => {
     event.preventDefault();
 
-    console.log('I have been submitted!!', props.id);
+    console.log('I have been submitted!!', id);
 
-    props.addChild(state);
+    props.updateChild(state);
 
     setState({
       fstname: '',
       lstname: '',
-      username: '',
-      password: ''
+      username: ''
     });
 
     props.history.push('/home');
@@ -95,7 +96,7 @@ const SignUpChild = props => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component='h1' variant='h5'>
-          Sign up child
+          Update a child
         </Typography>
         <form className={classes.form} onSubmit={submitHandler} noValidate>
           <Grid container spacing={2}>
@@ -142,20 +143,6 @@ const SignUpChild = props => {
                 onChange={changeHandler}
               />
             </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant='outlined'
-                required
-                fullWidth
-                name='password'
-                label='Password'
-                type='password'
-                id='password'
-                value={state.password}
-                autoComplete='current-password'
-                onChange={changeHandler}
-              />
-            </Grid>
           </Grid>
 
           <Button
@@ -165,7 +152,7 @@ const SignUpChild = props => {
             color='primary'
             className={classes.submit}
           >
-            Sign Up
+            Update
           </Button>
           <Grid container justify='flex-end'>
             <Grid item>
@@ -181,14 +168,15 @@ const SignUpChild = props => {
   );
 };
 
-const mapStateToProps = ({loginReducer}) => {
-  console.log(loginReducer.userID);
+const mapStateToProps = ({loginReducer, updateChildReducer}) => {
+  console.log('this is from mapstate: ', updateChildReducer);
   return {
-    id: loginReducer.userID
+    child: updateChildReducer.child,
+    parentId: loginReducer.userID
   };
 };
 
 export default connect(
   mapStateToProps,
-  {addChild}
-)(SignUpChild);
+  {updateChild}
+)(UpdateChild);

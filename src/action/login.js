@@ -9,8 +9,10 @@ const login = (user, history) => dispatch => {
   return axiosWithAuth()
     .post('/api/auth/login', user)
     .then(res => {
-      console.log('I am token: ', res.data.token);
+      // console.log('I am ')
+      // console.log('I am token: ', res.data.token);
       localStorage.setItem('token', res.data.token);
+      localStorage.setItem('id', res.data.id);
 
       // localStorage.getItem('token');
       dispatch({type: LOGIN_SUCCESS, payload: res.data});

@@ -4,7 +4,7 @@ import axiosWithAuth from '../utils/axiosWithAuth';
 const deleteChild = id => dispatch => {
   dispatch({type: DELETE_CHILD_START});
   return axiosWithAuth()
-    .delete(`api/chore/${id}`)
+    .delete(`api/auth/child/${id}`)
     .then(res => {
       console.log(res);
       dispatch({type: DELETE_CHILD_SUCCESS, payload: id});
