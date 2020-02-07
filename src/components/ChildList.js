@@ -8,7 +8,7 @@ import getChildren from '../action/getChildren';
 import Child from './Child';
 
 const ChildList = props => {
-  console.log(props);
+  // console.log(props);
   useEffect(() => {
     // getChildren();
     console.log(props.id);
@@ -35,6 +35,9 @@ const ChildList = props => {
               {/* <Link to={`/childrenlist/${item}`} */}
               <Child item={item} />
               <button onClick={() => deleteChild(item.id)}>delete</button>
+              <Link to={`/updateChild/${item.id}`}>
+                <button>Update</button>
+              </Link>
             </div>
           );
         })}
@@ -48,7 +51,7 @@ const ChildList = props => {
 
 const mapStateToProps = ({getChildrenReducer, loginReducer}) => {
   // console.log('MapState: ', loginReducer);
-  console.log('ID is: ', loginReducer.userID);
+  // console.log('ID is: ', loginReducer.userID);
 
   return {
     childrenList: getChildrenReducer.children,

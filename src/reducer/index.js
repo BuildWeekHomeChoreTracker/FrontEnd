@@ -6,7 +6,7 @@ import {childLoginReducer} from './childLoginReducer';
 import {addChildReducer} from './addChildReducer';
 import {deleteChildReducer} from './deleteChildReducer';
 import {getChildrenReducer} from './getChildrenReducer';
-import {getChoresReducer} from './getChoresReducer';
+import {updateChildReducer} from './updateChildReducer';
 import {deleteChoresReducer} from './deleteChoresReducer';
 
 export default combineReducers({
@@ -16,6 +16,6 @@ export default combineReducers({
   addChildReducer,
   deleteChildReducer,
   getChildrenReducer,
-  getChoresReducer,
+  updateChildReducer,
   deleteChoresReducer
 });
